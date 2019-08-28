@@ -1,3 +1,5 @@
+import { type } from "os";
+
 interface List {
     readonly id: number,
     name: string,
@@ -50,3 +52,34 @@ interface Names {
     [x: string]: any,
     [z: number]: number,
 }
+
+
+/**** interface to function */
+
+let add2: (x: number, y: number) => number
+
+interface Add3 {
+    (x: number, y: number): number
+}
+
+type add4 = (x: number, y: number) => number
+
+let add5: add4 = (a, b) => a + b
+
+interface Lib {
+    (): void;
+    version: string;
+    doSomething(): void;
+}
+
+
+function getLib() {
+    let lib: Lib = (() => {}) as Lib
+    lib.version = '2.0'
+    lib.doSomething = () => {}
+    return lib
+}
+
+let lib1 = getLib()
+lib1()
+lib1.doSomething()
