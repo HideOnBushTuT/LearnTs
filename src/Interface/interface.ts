@@ -1,4 +1,5 @@
 import { type } from "os";
+import { runInContext } from "vm";
 
 interface List {
     readonly id: number,
@@ -83,3 +84,29 @@ function getLib() {
 let lib1 = getLib()
 lib1()
 lib1.doSomething()
+
+ //=============================
+interface Human {
+    name: String
+    eat(): void
+}
+
+interface Man extends Human {
+    run(): void
+}
+
+interface Child {
+    cry(): void
+}
+
+interface Boy extends Man, Child {}
+
+let boy: Boy = {
+    name: '',
+    run() {},
+    eat() {},
+    cry() {},
+}
+
+
+
